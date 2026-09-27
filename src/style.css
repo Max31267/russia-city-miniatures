@@ -1,0 +1,67 @@
+@import 'maplibre-gl/dist/maplibre-gl.css';
+
+:root { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #e9e8df; background: #111921; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { color: #9cd6d1; }
+.topbar { height: 62px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-bottom: 1px solid #2c3740; }
+.brand { display: flex; align-items: center; gap: 11px; font-size: 17px; font-weight: 700; letter-spacing: -.03em; }
+.brand-mark { display: grid; place-items: center; width: 33px; height: 33px; border: 1px solid #79b8b5; color: #a3dbd6; border-radius: 8px; font-size: 23px; line-height: 1; }
+.topbar-note { color: #81949c; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+.layout { display: grid; grid-template-columns: minmax(320px, 380px) minmax(0, 1fr); min-height: calc(100vh - 108px); }
+.controls { padding: 31px 30px 34px; border-right: 1px solid #2c3740; overflow-y: auto; }
+.eyebrow { margin: 0 0 15px; color: #77c8c2; font-size: 11px; font-weight: 800; letter-spacing: .2em; }
+h1 { margin: 0; font-size: clamp(36px, 3vw, 49px); line-height: 1.03; letter-spacing: -.06em; }
+h1 em { font-style: normal; color: #edbc83; }
+.intro { color: #aeb9bc; line-height: 1.52; font-size: 14px; margin: 19px 0 29px; }
+.control-section { border-top: 1px solid #2e3b43; padding: 20px 0 21px; }
+.control-section h2 { margin: 0 0 17px; font-size: 15px; font-weight: 700; }
+.control-section h2 span { color: #77c8c2; font-size: 11px; margin-right: 8px; letter-spacing: .08em; }
+label { display: block; margin: 0 0 8px; font-size: 12px; font-weight: 600; color: #b6c2c3; }
+.optional { font-weight: 400; color: #70848c; }
+input[type=text], input[type=number], select { width: 100%; height: 39px; padding: 0 11px; color: #eef0e9; background: #1b2831; border: 1px solid #3d4d55; border-radius: 6px; outline: none; }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid #81c9c2; outline-offset: 2px; }
+.button-row { display: flex; gap: 8px; margin-top: 10px; }
+.button-row > * { min-width: 0; flex: 1; }
+.secondary { min-height: 38px; padding: 0 11px; background: #26343d; color: #d9e2df; border: 1px solid #40515a; border-radius: 6px; font-size: 12px; font-weight: 650; }
+.secondary:hover { background: #344852; }
+.hint { color: #7d919a; line-height: 1.5; font-size: 12px; margin: 10px 0 0; }
+.range-label { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.range-label label { margin: 0; }
+output { color: #edbc83; font-size: 12px; font-weight: 700; }
+input[type=range] { display: block; width: 100%; margin: 9px 0 17px; accent-color: #85c9c3; }
+.building-editor { margin-top: 13px; padding: 12px; background: #1b2a33; border: 1px solid #46565a; border-radius: 7px; }
+.building-editor[hidden] { display: none; }
+.building-id { display: block; color: #edbc83; font-size: 11px; margin-bottom: 10px; overflow: hidden; text-overflow: ellipsis; }
+.building-editor .button-row { margin: 0; }
+.primary, .download { width: 100%; border-radius: 7px; font-weight: 700; }
+.primary { min-height: 48px; margin-top: 7px; background: #e7b57d; color: #17222a; border: 0; padding: 0 15px; display: flex; justify-content: space-between; align-items: center; }
+.primary:hover { background: #f4c798; }
+.primary:disabled { opacity: .55; cursor: wait; }
+.primary span { font-size: 21px; }
+.download { min-height: 43px; margin-top: 9px; color: #a4ded2; background: transparent; border: 1px solid #6aaca7; }
+.download:disabled { opacity: .35; cursor: not-allowed; }
+.status { color: #aebfc1; line-height: 1.4; font-size: 12px; min-height: 2.8em; margin: 16px 0 0; }
+.status.error { color: #ffa795; }
+.stats { color: #78c8bb; font-size: 12px; line-height: 1.5; margin: 4px 0; }
+.workspace { display: grid; grid-template-rows: minmax(390px, 55%) minmax(300px, 45%); min-width: 0; }
+.map-panel, .preview-panel { position: relative; min-height: 0; background: #17232b; overflow: hidden; }
+.map-panel { border-bottom: 1px solid #35434b; }
+.panel-head { height: 38px; padding: 0 17px; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #90aaa9; font-size: 10px; font-weight: 750; letter-spacing: .12em; white-space: nowrap; }
+.panel-head span:last-child { font-weight: 500; letter-spacing: .03em; overflow: hidden; text-overflow: ellipsis; }
+#map { width: 100%; height: calc(100% - 38px); }
+.map-tip { position: absolute; bottom: 15px; left: 15px; padding: 7px 10px; color: #dce9e5; font-size: 11px; background: #142129d9; border: 1px solid #42535b; border-radius: 5px; pointer-events: none; }
+#preview { height: calc(100% - 69px); position: relative; }
+#preview canvas { display: block; }
+#preview-empty { position: absolute; inset: 0; display: grid; place-items: center; color: #68858d; font-size: 13px; text-align: center; padding: 20px; }
+#preview-empty[hidden] { display: none; }
+.legend { height: 31px; display: flex; gap: 8px; align-items: center; justify-content: center; color: #9dacac; font-size: 10px; }
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 2px; margin-left: 8px; }
+.dot.buildings { background: #c69164; }.dot.roads { background: #53626b; }.dot.water { background: #2d9ecb; }.dot.parks { background: #4fa576; }
+.footer { min-height: 46px; padding: 9px 29px; border-top: 1px solid #2c3740; color: #758b91; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; }
+.footer a { color: #9bbdb9; }
+.maplibregl-ctrl-attrib { font-size: 10px !important; }
+@media (max-width: 900px) { .layout { display: block; }.controls { border-right: 0; border-bottom: 1px solid #2c3740; }.workspace { height: 850px; }.topbar-note { display: none; }.footer { flex-wrap: wrap; } }
+@media (max-width: 520px) { .topbar { padding: 0 17px; }.controls { padding: 25px 17px; }.workspace { height: 730px; grid-template-rows: 380px 350px; }.panel-head span:last-child { display: none; }.legend { gap: 3px; font-size: 9px; }.footer { padding: 13px 17px; } }

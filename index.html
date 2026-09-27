@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111921" />
+    <title>Миниатюры городов России</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">▦</span><span>Миниатюры городов</span></div>
+        <span class="topbar-note">Карта → рельеф → единый STL</span>
+      </header>
+      <main class="layout">
+        <aside class="controls">
+          <p class="eyebrow">ГЕНЕРАТОР МАКЕТА</p>
+          <h1>Свой город<br /><em>на ладони.</em></h1>
+          <p class="intro">Выберите участок в России, проверьте высоты домов и скачайте модель для 3D-печати.</p>
+
+          <section class="control-section">
+            <h2><span>01</span> Выбор участка</h2>
+            <label for="city">Перейти к городу</label>
+            <select id="city">
+              <option value="37.6176,55.7558">Москва</option>
+              <option value="30.3159,59.9391">Санкт-Петербург</option>
+              <option value="92.8725,56.0106">Красноярск</option>
+              <option value="39.7303,43.5855">Сочи</option>
+              <option value="131.8855,43.1155">Владивосток</option>
+            </select>
+            <div class="button-row">
+              <button type="button" id="draw" class="secondary">Нарисовать область</button>
+              <button type="button" id="center" class="secondary">Центр карты</button>
+            </div>
+            <p class="hint" id="area-info">Участок: 400 × 400 м</p>
+          </section>
+
+          <section class="control-section">
+            <h2><span>02</span> Параметры макета</h2>
+            <div class="range-label"><label for="size">Длинная сторона</label><output id="size-value">180 мм</output></div>
+            <input id="size" type="range" min="100" max="220" step="5" value="180" />
+            <div class="range-label"><label for="terrain-scale">Усиление рельефа</label><output id="terrain-value">1×</output></div>
+            <input id="terrain-scale" type="range" min="1" max="5" step="0.5" value="1" />
+            <label for="label">Надпись на рамке <span class="optional">необязательно</span></label>
+            <input id="label" type="text" maxlength="20" placeholder="Например, Красноярск" />
+          </section>
+
+          <section class="control-section">
+            <h2><span>03</span> Высота зданий</h2>
+            <p class="hint">После загрузки нажмите на здание на карте, чтобы изменить его высоту.</p>
+            <div id="building-editor" class="building-editor" hidden>
+              <span id="building-id" class="building-id"></span>
+              <label for="building-height">Высота, м</label>
+              <div class="button-row">
+                <input id="building-height" type="number" min="1" max="500" step="1" />
+                <button type="button" id="apply-height" class="secondary">Применить</button>
+              </div>
+            </div>
+          </section>
+
+          <button type="button" id="generate" class="primary">Создать миниатюру <span>↗</span></button>
+          <button type="button" id="download" class="download" disabled>Скачать один STL</button>
+          <p id="status" class="status" role="status">Выберите участок и нажмите «Создать миниатюру».</p>
+          <p id="stats" class="stats"></p>
+        </aside>
+
+        <div class="workspace">
+          <section class="map-panel">
+            <div class="panel-head"><span>КАРТА / ВЫБОР ОБЛАСТИ</span><span id="map-coordinates"></span></div>
+            <div id="map"></div>
+            <div class="map-tip">Перемещайте карту или нарисуйте рамку мышью</div>
+          </section>
+          <section class="preview-panel">
+            <div class="panel-head"><span>3D-ПРЕДПРОСМОТР</span><span>Поверните мышью · масштаб — колесом</span></div>
+            <div id="preview"><div id="preview-empty">После построения здесь появится ваша миниатюра</div></div>
+            <div class="legend"><i class="dot buildings"></i> Здания <i class="dot roads"></i> Дороги <i class="dot water"></i> Вода <i class="dot parks"></i> Зелёные зоны</div>
+          </section>
+        </div>
+      </main>
+      <footer class="footer">
+        <span>Данные карты © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> · Рельеф <a href="https://registry.opendata.aws/terrain-tiles/" target="_blank" rel="noopener">Mapzen Terrain Tiles</a></span>
+        <span>STL не хранит цвета · Проверьте файл в слайсере перед печатью</span>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
